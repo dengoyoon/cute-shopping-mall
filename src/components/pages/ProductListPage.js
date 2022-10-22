@@ -14,6 +14,7 @@ export class ProductListPage extends Component {
 	updated() {
 		new ProductList($('.ProductList'), {
 			data: this.state,
+			moveToDetailPage: this.moveToDetailPage.bind(this),
 		});
 	}
 	template() {
@@ -24,7 +25,7 @@ export class ProductListPage extends Component {
 		</div>
     `;
 	}
-	setEvent() {
-		// 이벤트리스너 등록 및 이벤트 받기는 하위 컴포넌트에서 할거고, 여기선 setEvent 대신 이벤트 처리 로직 함수 만들어야 함
+	moveToDetailPage(productId) {
+		console.log(`clicked happend on ${productId}`);
 	}
 }

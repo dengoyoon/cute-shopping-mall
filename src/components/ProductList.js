@@ -17,8 +17,11 @@ export class ProductList extends Component {
 			.join('');
 	}
 	setEvent() {
+		const { moveToDetailPage } = this.props;
 		this.$target.addEventListener('click', ({ target }) => {
-			// target.productId로 이벤트핸들링 함수 호출
+			if (target.classList.contains('Product')) {
+				moveToDetailPage(target.dataset.productId);
+			}
 		});
 	}
 }
