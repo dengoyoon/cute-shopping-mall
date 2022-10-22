@@ -1,10 +1,10 @@
 export class Component {
 	$target;
-	$props;
+	props;
 	state;
-	constructor($target, $props) {
+	constructor($target, props) {
 		this.$target = $target;
-		this.$props = $props;
+		this.props = props;
 		this.setup();
 		this.render();
 		this.setEvent();
