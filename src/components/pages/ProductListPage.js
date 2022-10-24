@@ -1,9 +1,9 @@
 import CCApi from '../../api/index.js';
 import { Component } from '../../core/Component.js';
-import { ProductList } from '../ProductList.js';
+import ProductList from '../ProductList.js';
 import { $ } from '../../utils/dom.js';
 
-export class ProductListPage extends Component {
+class ProductListPage extends Component {
 	setup() {
 		this.state = [];
 	}
@@ -12,7 +12,7 @@ export class ProductListPage extends Component {
 		this.setState(res);
 	}
 	updated() {
-		new ProductList($('.ProductList'), {
+		ProductList.mount($('.ProductList'), {
 			data: this.state,
 			moveToDetailPage: this.moveToDetailPage.bind(this),
 		});
@@ -26,6 +26,11 @@ export class ProductListPage extends Component {
     `;
 	}
 	moveToDetailPage(productId) {
-		console.log(`clicked happend on ${productId}`);
+		const urlChangeEvent = new CustomEvent('urlchange', {
+			detail: { url: `/products/${productId}`, productId },
+		});
+		window.dispatchEvent(urlChangeEvent);
 	}
 }
+
+export default new ProductListPage();

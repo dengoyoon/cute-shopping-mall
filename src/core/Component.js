@@ -2,7 +2,7 @@ export class Component {
 	$target;
 	props;
 	state;
-	constructor($target, props) {
+	mount($target, props) {
 		this.$target = $target;
 		this.props = props;
 		this.setup();

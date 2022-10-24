@@ -1,6 +1,6 @@
 import { Component } from '../core/Component.js';
 
-export class ProductList extends Component {
+class ProductList extends Component {
 	template() {
 		const { data } = this.props;
 		return Object.values(data)
@@ -25,3 +25,5 @@ export class ProductList extends Component {
 		});
 	}
 }
+
+export default new ProductList();
