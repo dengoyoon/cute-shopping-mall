@@ -1,4 +1,3 @@
-import { $ } from './utils/dom.js';
-import { App } from './App.js';
+import { useRouter } from './core/router.js';
 
-new App($('.App'));
+const router = new useRouter();
