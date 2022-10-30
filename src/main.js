@@ -1,3 +1,3 @@
-import { useRouter } from './core/router.js';
+import { App } from './App.js';
 
-const router = new useRouter();
+const app = new App();

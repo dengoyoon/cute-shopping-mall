@@ -4,13 +4,14 @@ import { $ } from '../utils/dom.js';
 
 export class useRouter {
 	routes;
-	constructor() {
-		this.routes = {
-			'/': ProductListPage,
-			'/products': ProductDetailPage,
-		};
+	constructor(initialRoute) {
+		this.routes = { '/': initialRoute };
+		this.routes['/'].mount($('.App'));
 		this.setEvent();
-		ProductListPage.mount($('.App'));
+	}
+
+	addRoutes(url, component) {
+		this.routes[url] = component;
 	}
 
 	handleUrlChange({ url, productId }) {
