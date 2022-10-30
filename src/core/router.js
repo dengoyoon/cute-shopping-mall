@@ -13,7 +13,7 @@ export class useRouter {
 		ProductListPage.mount($('.App'));
 	}
 
-	handleUrlChangeByClick({ url, productId }) {
+	handleUrlChange({ url, productId }) {
 		history.pushState(null, null, `${url}`);
 
 		const reg = /\/products\/[0-9]{1}/g;
@@ -27,8 +27,11 @@ export class useRouter {
 	}
 
 	setEvent() {
-		window.addEventListener('urlchange', (e) =>
-			this.handleUrlChangeByClick(e.detail),
-		);
+		window.addEventListener('urlchange', (e) => this.handleUrlChange(e.detail));
+		window.addEventListener('popstate', () => {
+			const path = window.location.pathname;
+			const productId = path.split('/').slice(-1)[0];
+			this.handleUrlChange({ url: path, productId });
+		});
 	}
 }
