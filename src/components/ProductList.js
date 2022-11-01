@@ -8,15 +8,10 @@ export default class ProductList extends Component {
       <ul>
         ${filteredItems
           .map(
-            ({ contents, active, seq }) => `
-          <li data-seq="${seq}">
-            ${contents}
-            <button class="toggleBtn" style="color: ${
-              active ? '#09F' : '#F09'
-            }">
-              ${active ? '활성' : '비활성'}
-            </button>
-            <button class="deleteBtn">삭제</button>
+            (filteredItem) => `
+          <li data-seq="${filteredItem.id}}">
+            ${filteredItem.name}
+           
           </li>
         `
           )
