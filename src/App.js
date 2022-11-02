@@ -12,8 +12,8 @@ export default class App extends Component {
   template() {
     return `
          
-          <main data-component="items"></main>
-       
+        <main data-component="items"></main>
+        <main data-component=""></main>
         `;
   }
 

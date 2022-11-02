@@ -26,15 +26,10 @@ export default class ProductList extends Component {
     `;
   }
 
-  //   setEvent() {
-  //     const { deleteItem, toggleItem } = this.$props;
-
-  //     this.addEvent('click', '.deleteBtn', ({ target }) => {
-  //       deleteItem(Number(target.closest('[data-seq]').dataset.seq));
-  //     });
-
-  //     this.addEvent('click', '.toggleBtn', ({ target }) => {
-  //       toggleItem(Number(target.closest('[data-seq]').dataset.seq));
-  //     });
-  //   }
+  setEvent() {
+    this.addEvent('click', '.product', ({ target }) => {
+      history.pushState({}, null, '/id');
+    });
+    console.log(this);
+  }
 }
