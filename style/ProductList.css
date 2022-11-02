@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+.product-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.title {
+  font-weight: 800;
+  font-size: 30px;
+}
+
+.product {
+  width: 350px;
+  height: 350px;
+  background-color: #ffffff;
+  margin: 20px 20px;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.product-img {
+  width: 300px;
+  height: 300px;
+}
+
+.price {
+  padding-top: 10px;
+  float: right;
+}
+
+.product-name {
+  padding-top: 10px;
+  float: left;
+}
