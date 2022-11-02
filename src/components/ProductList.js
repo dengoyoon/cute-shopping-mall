@@ -3,7 +3,6 @@ import Component from '../core/Component.js';
 export default class ProductList extends Component {
   template() {
     const filteredItems = this.$props;
-    console.log(filteredItems[0].imageUrl);
     return `
       <div>
         <div class="title">상품 목록</div>
@@ -11,8 +10,10 @@ export default class ProductList extends Component {
         ${filteredItems
           .map(
             (filteredItem) => `
-            <div class="product">
-            <img src="${filteredItem.imageUrl}" class="product-img"/>
+            <div class="product" id="productId">
+            <img src="${filteredItem.imageUrl}" class="product-img" id="${
+              filteredItem.id
+            }"/>
             <span class="product-name">${filteredItem.name}</span>
             <span class="price">${filteredItem.price
               .toString()
@@ -28,7 +29,8 @@ export default class ProductList extends Component {
 
   setEvent() {
     this.addEvent('click', '.product', ({ target }) => {
-      history.pushState({}, null, '/id');
+      history.pushState({ data: 'product' }, 'hi', `${target.id}`);
+      console.log(target);
     });
     console.log(this);
   }

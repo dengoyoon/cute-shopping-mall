@@ -11,9 +11,8 @@ export default class App extends Component {
 
   template() {
     return `
-         
         <main data-component="items"></main>
-        <main data-component=""></main>
+        <main data-component="detail"></main>
         `;
   }
 
@@ -22,6 +21,8 @@ export default class App extends Component {
     const $items = this.$target.querySelector('[data-component="items"]');
     console.log(this.$state.items);
     new Items($items, this.$state.items);
+
+    const $detail = this.$target.querySelector('[data-component="detail"]');
   }
 
   deleteItem(seq) {
