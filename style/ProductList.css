@@ -16,6 +16,7 @@
   margin: 20px 20px;
   padding: 10px 10px;
   text-align: center;
+  cursor: pointer;
 }
 
 .product-img {
@@ -26,9 +27,11 @@
 .price {
   padding-top: 10px;
   float: right;
+  font-weight: 600;
 }
 
 .product-name {
   padding-top: 10px;
   float: left;
+  font-weight: 600;
 }
