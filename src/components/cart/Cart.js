@@ -1,27 +1,32 @@
-import Component from '../../core/Component.js';
+import './styles/Cart.css';
 
 export default class Cart extends Component {
   template() {
     // const { filteredItems } = this.$props;
-    // return `
-    //   <ul>
-    //     ${filteredItems
-    //       .map(
-    //         ({ contents, active, seq }) => `
-    //       <li data-seq="${seq}">
-    //         ${contents}
-    //         <button class="toggleBtn" style="color: ${
-    //           active ? '#09F' : '#F09'
-    //         }">
-    //           ${active ? '활성' : '비활성'}
-    //         </button>
-    //         <button class="deleteBtn">삭제</button>
-    //       </li>
-    //     `
-    //       )
-    //       .join('')}
-    //   </ul>
-    // `;
+    return `<div class="Cart">
+    <ul>
+      <li class="Cart__item">
+        <img
+          src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/cafe_coffee_cup.png"
+        />
+        <div class="Cart__itemDesription">
+          <div>커피잔 100개 번들 10,000원 10개</div>
+          <div>100,000원</div>
+        </div>
+      </li>
+      <li class="Cart__item">
+        <img
+          src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/cafe_coffee_cup.png"
+        />
+        <div class="Cart__itemDesription">
+          <div>커피잔 1000개 번들 15,000원 5개</div>
+          <div>75,000원</div>
+        </div>
+      </li>
+    </ul>
+    <div class="Cart__totalPrice">총 상품가격 175,000원</div>
+    <button class="OrderButton">주문하기</button>
+  </div>`;
   }
 
   setEvent() {

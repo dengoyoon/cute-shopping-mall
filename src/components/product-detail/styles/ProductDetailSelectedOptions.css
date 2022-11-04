@@ -1,0 +1,31 @@
+.ProductDetail__selectedOptions {
+  border: 1px solid #ccc;
+  margin-top: auto;
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+.ProductDetail__selectedOptions h3 {
+  margin-top: 0;
+}
+
+.ProductDetail__selectedOptions input {
+  width: 50px;
+}
+
+.ProductDetail__selectedOptions li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.ProductDetail ul {
+  margin-bottom: 16px;
+}
+
+.ProductDetail__totalPrice {
+  font-size: 2rem;
+  text-align: right;
+  margin-bottom: 16px;
+}
