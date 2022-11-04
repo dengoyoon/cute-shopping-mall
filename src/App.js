@@ -1,5 +1,5 @@
 import Component from './core/Component.js';
-// import { setA, setB, store } from './store.js';
+// import { setA, setB, store } from './store/store.js';
 
 // const InputA = () =>
 //   `<input id="stateA" value="${store.getState().a}" size="5" />`;
