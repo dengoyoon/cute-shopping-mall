@@ -1,6 +1,6 @@
-import Component from '../core/Component.js';
+import Component from '../../core/Component.js';
 
-export default class Items extends Component {
+export default class Cart extends Component {
   template() {
     // const { filteredItems } = this.$props;
     // return `
