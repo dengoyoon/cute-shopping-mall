@@ -1,5 +1,7 @@
 import State from "./State.js";
 
+const getArrayTop = (array) => array[array.length - 1];
+
 export default class Component {
     _target;
     _state;
@@ -29,6 +31,10 @@ export default class Component {
     setState(newState) {
         this._state.setState(newState);
         this.render();
+    }
+
+    _getRegistedEventTop() {
+        return getArrayTop(this._registedEvents);
     }
 
     addEvent(type, selector, callback) {

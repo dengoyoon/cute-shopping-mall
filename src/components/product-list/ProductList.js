@@ -1,61 +1,41 @@
 import Component from "../../core/Component.js";
 import { getProductList } from "../../../api.js";
+import ProductItem from "../product-detail/ProductItem.js";
+
+const makeProductList = (productList) =>
+    productList.forEach((productItem) =>
+        new ProductItem(".ProductListPage__list", { ...productItem }).template()
+    );
 
 export default class ProductList extends Component {
+    _productList;
     constructor(selector, props) {
         super(selector, props);
-        this.render();
+        getProductList().then((productList) => {
+            this._productList = [...productList];
+            this.render();
+            this.setEvents();
+        });
     }
 
     template() {
         return `
             <div class="ProductListPage">
                 <h1>상품목록</h1>
-                <ul>
-          <li class="Product">
-            <img src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/cafe_coffee_cup.png">
-            <div class="Product__info">
-              <div>커피잔</div>
-              <div>10,000원~</div>
-            </div>
-          </li>
-          <li class="Product">
-            <img src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/cafe_coffee_cup.png">
-            <div class="Product__info">
-              <div>커피잔</div>
-              <div>10,000원~</div>
-            </div>
-          </li>
-          <li class="Product">
-            <img src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/cafe_coffee_cup.png">
-            <div class="Product__info">
-              <div>커피잔</div>
-              <div>10,000원~</div>
-            </div>
-          </li>
-          <li class="Product">
-            <img src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/cafe_coffee_cup.png">
-            <div class="Product__info">
-              <div>커피잔</div>
-              <div>10,000원~</div>
-            </div>
-          </li>
-          <li class="Product">
-            <img src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/cafe_coffee_cup.png">
-            <div class="Product__info">
-              <div>커피잔</div>
-              <div>10,000원~</div>
-            </div>
-          </li>
-          <li class="Product">
-            <img src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/cafe_coffee_cup.png">
-            <div class="Product__info">
-              <div>커피잔</div>
-              <div>10,000원~</div>
-            </div>
-          </li>
-        </ul>
+                <ul class="ProductListPage__list"></ul>
             </div>
         `;
+    }
+
+    onClickProductItem(event) {
+        console.log(event.target);
+    }
+
+    mounted() {
+        makeProductList(this._productList);
+    }
+
+    setEvents() {
+        this.addEvent("click", ".Product", this.onClickProductItem.bind(this));
     }
 }
