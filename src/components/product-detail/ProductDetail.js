@@ -1,9 +1,14 @@
 import Component from "../../core/Component.js";
+import { getProductDetail } from "../../../api.js";
 
 export default class ProductDetail extends Component {
     constructor(selector, props) {
         super(selector, props);
         this.render();
+
+        getProductDetail(1).then((data) => {
+            console.log(data);
+        });
     }
 
     template() {

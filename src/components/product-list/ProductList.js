@@ -1,4 +1,5 @@
 import Component from "../../core/Component.js";
+import { getProductList } from "../../../api.js";
 
 export default class ProductList extends Component {
     constructor(selector, props) {
