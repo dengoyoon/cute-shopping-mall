@@ -1,8 +1,8 @@
 import Component from './core/Component.js';
-import { onNavigate } from './utils/navigate.js';
-import HomePage from './pages/HomePage.js';
 import ProductListPage from './pages/ProductListPage.js';
+import HomePage from './pages/HomePage.js';
 import CartPage from './pages/CartPage.js';
+import { onNavigate } from './utils/navigate.js';
 
 export default class App extends Component {
   setup() {}
@@ -28,8 +28,8 @@ export default class App extends Component {
       const target = e.target.closest('a');
       if (!(target instanceof HTMLAnchorElement)) return;
       const targetURL = e.target.pathname;
-      this.navigateRender(targetURL, $App);
       onNavigate(targetURL);
+      this.navigateRender(targetURL, $App);
     });
     // 뒤로가기
     window.onpopstate = (e) => {

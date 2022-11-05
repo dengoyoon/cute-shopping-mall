@@ -1,6 +1,6 @@
 import Component from '../core/Component.js';
-import { productAPI } from '../api/Product.js';
 import ProductList from '../components/product-list/ProductList.js';
+import { productAPI } from '../api/Product.js';
 
 export default class ProductListPage extends Component {
   template() {

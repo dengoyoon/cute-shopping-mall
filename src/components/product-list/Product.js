@@ -40,8 +40,8 @@ export default class Product extends Component {
   setEvent() {
     this.addEvent('click', `.Product[key="${this.id}"]`, (e) => {
       const topParentNode = getTopParentNode(e.target, 'Product');
-      new ProductDetailPage(document.querySelector('.App'));
       onNavigate(`/web/products/${topParentNode.getAttribute('key')}`);
+      new ProductDetailPage(document.querySelector('.App'));
     });
   }
 }
