@@ -5,9 +5,20 @@ export default class App extends Component {
   setup() {
     this.$state = {
       isFilter: 0,
-      items: products, //api.getProductList().data,
+      items: products,
     };
   }
+
+  this.route = () => {
+    target.innerHTML = '';
+    if(window.location.pathname === '/web/') {
+        new ProductsListPage(target, onClick);
+    }
+    if(window.location.pathname.includes('product')) {
+        const [, , newPathId] = window.location.pathname.split('/')
+        new ProductDetailPage(target, newPathId);
+    }
+}
 
   template() {
     return `

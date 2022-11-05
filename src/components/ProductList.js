@@ -27,11 +27,21 @@ export default class ProductList extends Component {
     `;
   }
 
+  route = () => {
+    target.innerHTML = '';
+    if (window.location.pathname === '/web/') {
+      new ProductsListPage(target, onClick);
+    }
+    if (window.location.pathname.includes('product')) {
+      const [, , newPathId] = window.location.pathname.split('/');
+      new ProductDetailPage(target, newPathId);
+    }
+  };
+
   setEvent() {
     this.addEvent('click', '.product', ({ target }) => {
       history.pushState({ data: 'product' }, 'hi', `${target.id}`);
-      console.log(target);
+      this.route();
     });
-    console.log(this);
   }
 }

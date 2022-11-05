@@ -10,3 +10,7 @@ const server = createServer(app);
 const cors = require('cors');
 
 app.use(cors());
+
+const Router = require('./Router');
+
+const router = new Router();
