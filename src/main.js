@@ -1,4 +1,5 @@
 import App from './App.js';
 
-const app = new App(document.querySelector('#root'));
-
+window.addEventListener('DOMContentLoaded', (e) => {
+  new App(document.querySelector('#root'));
+});
