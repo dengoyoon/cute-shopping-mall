@@ -1,5 +1,3 @@
-import './styles/ProductDetailSelectedOptions.css';
-
 export default class ProductDetailSelectedOptions extends Component {
   template() {
     // const { filteredItems } = this.$props;

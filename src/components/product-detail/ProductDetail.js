@@ -1,5 +1,3 @@
-import './styles/ProductDetail.css';
-
 export default class ProductDetail extends Component {
   template() {
     // const { filteredItems } = this.$props;

@@ -1,5 +1,3 @@
-import './OrderButton.css';
-
 export default class OrderButton extends Component {
   template() {
     // const { filteredItems } = this.$props;

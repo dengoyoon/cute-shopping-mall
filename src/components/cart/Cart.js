@@ -1,5 +1,3 @@
-import './styles/Cart.css';
-
 export default class Cart extends Component {
   template() {
     // const { filteredItems } = this.$props;
