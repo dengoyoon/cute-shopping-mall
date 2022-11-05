@@ -4,7 +4,7 @@ import Product from './Product.js';
 export default class ProductList extends Component {
   template() {
     return `
-      <h1>상품목록</h1>
+      <h1>상품 목록</h1>
       <ul data-component="product-list"></ul>
     `;
   }
