@@ -1,27 +1,24 @@
 import Component from '../core/Component.js';
-import { productAPI, ProductAPI } from '../api/Product.js';
+import { productAPI } from '../api/Product.js';
+import ProductList from '../components/product-list/ProductList.js';
 
 export default class ProductListPage extends Component {
-  setup() {
-    this.$state = {
-      items: [],
-    };
-  }
-
   template() {
     return `
-      <div class="ProductListPage">
-        <h1>상품목록</h1>
-      </div>
+      <div class="ProductListPage"></div>
     `;
   }
 
-  mounted() {
-    const { getItems } = this;
+  async mounted() {
+    const $ProductListPage = this.$target.querySelector('.ProductListPage');
+    const productItems = await this.getProductItems();
+    new ProductList($ProductListPage, {
+      productItems,
+    });
   }
 
-  getItems() {
-    const res = ProductAPI.getProductList();
-    // this.setState({ items: [...res] });
+  async getProductItems() {
+    const res = await productAPI.getProductList();
+    return res;
   }
 }

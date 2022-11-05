@@ -1,27 +1,36 @@
-import './styles/Product.css';
+import Component from '../../core/Component.js';
+import { getNumberFormat } from '../../utils/formatter.js';
 
 export default class Product extends Component {
-  template() {
-    // const { filteredItems } = this.$props;
-    return `<li class="Product">
-    <img
-      src="https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/cafe_coffee_cup.png"
-    />
-    <div class="Product__info">
-      <div>커피잔</div>
-      <div>10,000원~</div>
-    </div>
-  </li>`;
+  id;
+  name;
+  imageUrl;
+  price;
+
+  setup() {
+    const { id, name, imageUrl, price } = this.$props;
+    this.id = id;
+    this.name = name;
+    this.imageUrl = imageUrl;
+    this.price = price;
   }
 
-  setEvent() {
-    //   const { deleteItem, toggleItem } = this.$props;
-    //   this.addEvent('click', '.deleteBtn', ({ target }) => {
-    //     deleteItem(Number(target.closest('[data-seq]').dataset.seq));
-    //   });
-    //   this.addEvent('click', '.toggleBtn', ({ target }) => {
-    //     toggleItem(Number(target.closest('[data-seq]').dataset.seq));
-    //   });
-    // }
+  render() {
+    this.$target.insertAdjacentHTML('beforeend', this.template());
+    this.mounted();
+  }
+
+  template() {
+    return `
+      <li class="Product" key=${this.id}>
+        <img
+          src=${this.imageUrl}
+        />
+        <div class="Product__info">
+          <div>${this.name}</div>
+          <div>${getNumberFormat(this.price)}원~</div>
+        </div>
+      </li>
+    `;
   }
 }
