@@ -9,6 +9,7 @@ export default class App extends Component {
   setup() {}
 
   template() {
+    // TODO: navbar component로 따로 빼기
     return `
       <nav class="navbar">
         <a href="/">HOME</a>
