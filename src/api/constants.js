@@ -1,5 +1,5 @@
 export const BASE_API_URL =
-  'https://h6uc5l8b1g.execute-api.ap-northeast-2.amazonaws.com/dev/products';
+  'https://h6uc5l8b1g.execute-api.ap-northeast-2.amazonaws.com/dev';
 
 export const INITIAL_PRODUCT_LIST = [
   {

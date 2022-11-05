@@ -12,7 +12,7 @@ export class ProductAPI {
   // -- imageUrl  (상품 이미지 주소)
   // -- price (상품 가격)
   getProductList() {
-    const res = fetch(`${this.baseAPIUrl}/`).then((res) => res.json());
+    const res = fetch(`${this.baseAPIUrl}/products`).then((res) => res.json());
     return res;
   }
 
@@ -31,7 +31,7 @@ export class ProductAPI {
   // -- -- created_at  (생성일)
   // -- -- updated_at (수정일)
   getProductDetail(productId) {
-    const res = fetch(`${this.baseAPIUrl}/${productId}`).then((res) =>
+    const res = fetch(`${this.baseAPIUrl}/products/${productId}`).then((res) =>
       res.json()
     );
     return res;
