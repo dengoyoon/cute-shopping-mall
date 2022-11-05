@@ -1,6 +1,6 @@
 /* Utilities */
-@import 'reset';
-@import 'variables';
+@import 'reset.css';
+@import 'variables.css';
 
 /* default */
 body {
@@ -26,4 +26,21 @@ body {
   margin-bottom: 24px;
 }
 
+.navbar {
+  width: 100vw;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.navbar a {
+  margin: 0 8px;
+  color: darkblue;
+  padding: 16px;
+}
+
+.CartPage {
+  width: 600px;
+  margin: 0 auto;
+}
