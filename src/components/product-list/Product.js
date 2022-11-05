@@ -1,5 +1,8 @@
 import Component from '../../core/Component.js';
+import ProductDetailPage from '../../pages/ProductDetailPage.js';
 import { getNumberFormat } from '../../utils/formatter.js';
+import { getTopParentNode } from '../../utils/findNode.js';
+import { onNavigate } from '../../utils/navigate.js';
 
 export default class Product extends Component {
   id;
@@ -22,7 +25,7 @@ export default class Product extends Component {
 
   template() {
     return `
-      <li class="Product" key=${this.id}>
+      <li class="Product" key="${this.id}">
         <img
           src=${this.imageUrl}
         />
@@ -32,5 +35,13 @@ export default class Product extends Component {
         </div>
       </li>
     `;
+  }
+
+  setEvent() {
+    this.addEvent('click', `.Product[key="${this.id}"]`, (e) => {
+      const topParentNode = getTopParentNode(e.target, 'Product');
+      new ProductDetailPage(document.querySelector('.App'));
+      onNavigate(`/web/products/${topParentNode.getAttribute('key')}`);
+    });
   }
 }

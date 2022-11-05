@@ -47,6 +47,7 @@ body {
 }
 
 .Product {
+  cursor: pointer;
   width: 250px;
   padding: 16px;
   border-radius: 5px;
