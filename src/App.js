@@ -1,66 +1,58 @@
 import Component from './core/Component.js';
-// import { setA, setB, store } from './store/store.js';
-
-// const InputA = () =>
-//   `<input id="stateA" value="${store.getState().a}" size="5" />`;
-// const InputB = () =>
-//   `<input id="stateB" value="${store.getState().b}" size="5" />`;
-// const Calculator = () =>
-//   `<p>a + b = ${store.getState().a + store.getState().b}</p>`;
+import { onNavigate } from './utils/navigate.js';
+import HomePage from './pages/HomePage.js';
+import ProductListPage from './pages/ProductListPage.js';
+import ProductDetailPage from './pages/ProductDetailPage.js';
+import CartPage from './pages/CartPage.js';
 
 export default class App extends Component {
-  setup() {
-    // -- basic --
-    // this.$state = {
-    //   isFilter: 0,
-    //   items: [
-    //     {
-    //       seq: 1,
-    //       contents: 'item1',
-    //       active: false,
-    //     },
-    //     {
-    //       seq: 2,
-    //       contents: 'item2',
-    //       active: true,
-    //     },
-    //   ],
-    // };
+  setup() {}
+
+  template() {
+    return `
+      <nav class="navbar">
+        <a href="/">HOME</a>
+        <a href="/web/">PRODUCT LIST</a>
+        <a href="/web/products/:productId">PRODUCT DETAIL</a>
+        <a href="/web/cart">CART</a>
+      </nav>
+      <main class="App"></main>
+    `;
   }
 
   mounted() {
-    // -- basic --
-    // const {} = this;
-    // const $itemAppender = this.$target.querySelector(
-    //   '[data-component="item-appender"]'
-    // );
-    // new ItemAppender($itemAppender, {
-    //   addItem: addItem.bind(this),
-    // });
+    const $App = this.$target.querySelector('.App');
+    const $navbar = this.$target.querySelector('.navbar');
+    // navbar 클릭 이벤트
+    $navbar.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = e.target.closest('a');
+      if (!(target instanceof HTMLAnchorElement)) return;
+      const targetURL = e.target.pathname;
+      onNavigate(targetURL);
+      this.navigateRender(targetURL, $App);
+    });
+    // 뒤로가기
+    window.onpopstate = (e) => {
+      this.navigateRender(window.location.pathname, $App);
+    };
   }
 
-  template() {
-    // return `
-    //   ${InputA()}
-    //   ${InputB()}
-    //   ${Calculator()}
-    // `;
-    // ---------------------------------------------------
-    // -- basic --
-    //   return `
-    //   <header data-component="item-appender"></header>
-    //   <main data-component="items"></main>
-    //   <footer data-component="item-filter"></footer>
-    // `;
-  }
-
-  setEvent() {
-    // const { $target } = this;
-    // $el.querySelector('#stateA').addEventListener('change', ({ target }) => {
-    //   store.dispatch(setA(Number(target.value)));
-    // });
-    // $el.querySelector('#stateB').addEventListener('change', ({ target }) => {
-    //   store.dispatch(setB(Number(target.value)));
-    // });
+  // TODO: 새로고침 시 주소 접근 못함
+  navigateRender(targetURL, targetElement) {
+    switch (targetURL) {
+      case '/web/':
+        new ProductListPage(targetElement);
+        break;
+      // TODO: /products/[productId] 동적 파라미터 페이지
+      case '/web/products/:productId':
+        new ProductDetailPage(targetElement);
+        break;
+      case '/web/cart':
+        new CartPage(targetElement);
+        break;
+      default:
+        new HomePage(targetElement);
+    }
   }
 }
