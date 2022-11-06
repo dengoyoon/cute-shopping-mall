@@ -1,0 +1,9 @@
+:root {
+  --white: #fff;
+  --navbar-color: #00008b;
+  --default-bg-color: #eee;
+  --default-border-color: #ccc;
+  --button-bg-color: #1890ff;
+  --button-border-color: #40a9ff;
+  --button--hover-bg-color: #0050b3;
+}
