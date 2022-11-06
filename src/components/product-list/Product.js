@@ -38,6 +38,8 @@ export default class Product extends Component {
   }
 
   // TODO: more clean
+  // REVIEW: 이벤트 콜백 함수 따로 빼기 + 나중에 removeEventListener 로 제거
+  // (이벤트 등록 배열, removeEvent 메소드)
   setEvent() {
     this.addEvent('click', `.Product[key="${this.id}"]`, (e) => {
       const topParentNode = getTopParentNode(e.target, 'Product');

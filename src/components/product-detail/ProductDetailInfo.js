@@ -29,6 +29,7 @@ export default class ProductDetailInfo extends Component {
   }
 
   // TODO: option 선택 렌더링
+  // REVIEW: this.$target 에 onChange -> e.target.value ?
   template() {
     return `
       <img src=${this.imageUrl} />

@@ -1,3 +1,6 @@
+// REVIEW: mounted(), updated() 구분 - React Life Cycle 참고
+// REVIEW: constructor render() 따로 넣지 않고 상속받는 자식의 constructor에서 넣음
+
 export default class Component {
   $target;
   $props;
