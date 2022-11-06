@@ -1,39 +1,26 @@
-import Items from './components/ProductList.js';
+import ProductList from './components/ProductList.js';
+import ProductDetail from './components/ProductDetail.js';
 import Component from './core/Component.js';
-import products from './data/products.json' assert { type: 'json' };
 export default class App extends Component {
-  setup() {
-    this.$state = {
-      isFilter: 0,
-      items: products,
-    };
-  }
-
-  this.route = () => {
-    target.innerHTML = '';
-    if(window.location.pathname === '/web/') {
-        new ProductsListPage(target, onClick);
-    }
-    if(window.location.pathname.includes('product')) {
-        const [, , newPathId] = window.location.pathname.split('/')
-        new ProductDetailPage(target, newPathId);
-    }
-}
-
   template() {
     return `
+    <div class='App'>
         <main data-component="items"></main>
         <main data-component="detail"></main>
+        <main data-component="cart"></main>
+    </div>
         `;
   }
 
   mounted() {
-    const { filteredItems, addItem, deleteItem, toggleItem, filterItem } = this;
     const $items = this.$target.querySelector('[data-component="items"]');
-    console.log(this.$state.items);
-    new Items($items, this.$state.items);
+    new ProductList($items);
 
     const $detail = this.$target.querySelector('[data-component="detail"]');
+    new ProductDetail($detail);
+
+    const $cart = this.$target.querySelector('[data-component="cart"]');
+    new ProductCart($cart);
   }
 
   deleteItem(seq) {

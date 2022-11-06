@@ -1,8 +1,9 @@
 import Component from '../core/Component.js';
+import products from '../data/products.json' assert { type: 'json' };
 
 export default class ProductList extends Component {
   template() {
-    const filteredItems = this.$props;
+    const filteredItems = products;
     return `
       <div>
         <div class="title">상품 목록</div>
@@ -26,17 +27,6 @@ export default class ProductList extends Component {
       </div>
     `;
   }
-
-  route = () => {
-    target.innerHTML = '';
-    if (window.location.pathname === '/web/') {
-      new ProductsListPage(target, onClick);
-    }
-    if (window.location.pathname.includes('product')) {
-      const [, , newPathId] = window.location.pathname.split('/');
-      new ProductDetailPage(target, newPathId);
-    }
-  };
 
   setEvent() {
     this.addEvent('click', '.product', ({ target }) => {
