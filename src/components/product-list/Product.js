@@ -37,6 +37,7 @@ export default class Product extends Component {
     `;
   }
 
+  // TODO: more clean
   setEvent() {
     this.addEvent('click', `.Product[key="${this.id}"]`, (e) => {
       const topParentNode = getTopParentNode(e.target, 'Product');
