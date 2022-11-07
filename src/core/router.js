@@ -1,5 +1,3 @@
-import ProductDetailPage from '../components/pages/ProductDetailPage.js';
-import ProductListPage from '../components/pages/ProductListPage.js';
 import { $ } from '../utils/dom.js';
 
 export class useRouter {
