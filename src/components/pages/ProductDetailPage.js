@@ -71,6 +71,13 @@ class ProductDetailPage extends Component {
 		);
 	}
 
+	moveToCartPage() {
+		const urlChangeEvent = new CustomEvent('urlchange', {
+			detail: { url: `/cart` },
+		});
+		window.dispatchEvent(urlChangeEvent);
+	}
+
 	orderProduct() {
 		const { productData, productCart } = this.state;
 		const formattedData = productCart.map((item) => {
@@ -79,6 +86,7 @@ class ProductDetailPage extends Component {
 			return item;
 		});
 		localStorage.setWithExistingData(this.LOCAL_STORAGE_KEY, formattedData);
+		this.moveToCartPage();
 	}
 
 	handleProductQuantityUpdate(e) {

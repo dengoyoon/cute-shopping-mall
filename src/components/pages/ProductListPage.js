@@ -26,6 +26,7 @@ class ProductListPage extends Component {
     `;
 	}
 	moveToDetailPage(productId) {
+		// TODO: router객체의 메서드로 빼기 url만 넘길 수 있게.
 		const urlChangeEvent = new CustomEvent('urlchange', {
 			detail: { url: `/products/${productId}`, productId },
 		});
