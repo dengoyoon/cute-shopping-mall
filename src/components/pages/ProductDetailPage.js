@@ -3,8 +3,10 @@ import { Component } from '../../core/Component.js';
 import ProductOrderer from '../ProductOrderer.js';
 import { $ } from '../../utils/dom.js';
 import { calculateTotalPrice } from '../../utils/index.js';
+import localStorage from '../../utils/localStorage.js';
 
 class ProductDetailPage extends Component {
+	LOCAL_STORAGE_KEY = 'products_cart';
 	setup() {
 		this.state = {
 			productCart: [],
@@ -70,7 +72,13 @@ class ProductDetailPage extends Component {
 	}
 
 	orderProduct() {
-		// TODO: 주문한다.
+		const { productData, productCart } = this.state;
+		const formattedData = productCart.map((item) => {
+			delete item.optionData;
+			item.productId = productData.id;
+			return item;
+		});
+		localStorage.setWithExistingData(this.LOCAL_STORAGE_KEY, formattedData);
 	}
 
 	handleProductQuantityUpdate(e) {
@@ -96,7 +104,6 @@ class ProductDetailPage extends Component {
 		});
 
 		const updatedTotalPrice = calculateTotalPrice(updatedProductCart);
-
 		this.setState({
 			...this.state,
 			productCart: updatedProductCart,
