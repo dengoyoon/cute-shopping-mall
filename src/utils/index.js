@@ -1,7 +1,7 @@
-export const calculateTotalPrice = (currentTotalPrice, arr) => {
+export const calculateTotalPrice = (arr) => {
 	const sum = arr.reduce((acc, cur) => {
 		return (acc += cur.optionData.price * cur.quantity);
-	}, currentTotalPrice);
+	}, 0);
 
 	return sum;
 };

@@ -63,12 +63,45 @@ class ProductDetailPage extends Component {
 		}
 	}
 
+	findClickedOptionData(selectedOptionId) {
+		return this.state.productData.productOptions.find(
+			(item) => item.id === Number(selectedOptionId),
+		);
+	}
+
 	orderProduct() {
 		// TODO: 주문한다.
 	}
 
 	handleProductQuantityUpdate(e) {
-		// TODO: 수량을 업데이트 한다.
+		const selectedOptionId = e.target.id;
+		const updatedQuantity = Number(e.target.value);
+
+		const updatedProductCart = this.state.productCart.map((item) => {
+			if (item.optionId === selectedOptionId) {
+				if (item.optionData.stock < updatedQuantity) {
+					alert('올바른 수량을 입력하세요.');
+					return {
+						...item,
+						quantity: item.optionData.stock,
+					};
+				} else {
+					return {
+						...item,
+						quantity: updatedQuantity,
+					};
+				}
+			}
+			return item;
+		});
+
+		const updatedTotalPrice = calculateTotalPrice(updatedProductCart);
+
+		this.setState({
+			...this.state,
+			productCart: updatedProductCart,
+			totalPrice: updatedTotalPrice,
+		});
 	}
 
 	handleProductClick(e) {
@@ -83,10 +116,7 @@ class ProductDetailPage extends Component {
 		if (isAlreadyExist) {
 			return;
 		}
-
-		const clickedOptionData = this.state.productData.productOptions.find(
-			(item) => item.id === Number(selectedOptionId),
-		);
+		const clickedOptionData = this.findClickedOptionData(selectedOptionId);
 
 		const updatedProductCart = [
 			...this.state.productCart,
@@ -100,10 +130,7 @@ class ProductDetailPage extends Component {
 			},
 		];
 
-		const updatedTotalPrice = calculateTotalPrice(
-			this.state.totalPrice,
-			updatedProductCart,
-		);
+		const updatedTotalPrice = calculateTotalPrice(updatedProductCart);
 
 		this.setState({
 			...this.state,

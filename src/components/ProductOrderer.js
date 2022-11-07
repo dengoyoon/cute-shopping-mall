@@ -12,7 +12,7 @@ class ProductOrderer extends Component {
 									`                
               <li>
                 ${optionData.name} ${optionData.price}원
-                <div><input type="number" value=${quantity} id=${optionId}/>개</div>
+                <div><input type="number" value=${quantity} id=${optionId} max=${optionData.stock} min="0">개</div>
               </li>
               `,
 							)
