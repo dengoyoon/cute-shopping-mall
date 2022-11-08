@@ -2,6 +2,7 @@ import CCApi from '../../api/index.js';
 import { Component } from '../../core/Component.js';
 import ProductList from '../ProductList.js';
 import { $ } from '../../utils/dom.js';
+import router from '../../core/router.js';
 
 class ProductListPage extends Component {
 	setup() {
@@ -26,11 +27,7 @@ class ProductListPage extends Component {
     `;
 	}
 	moveToDetailPage(productId) {
-		// TODO: router객체의 메서드로 빼기 url만 넘길 수 있게.
-		const urlChangeEvent = new CustomEvent('urlchange', {
-			detail: { url: `/products/${productId}`, productId },
-		});
-		window.dispatchEvent(urlChangeEvent);
+		router.push('/products', { productId });
 	}
 }
 

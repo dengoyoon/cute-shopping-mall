@@ -1,36 +1,49 @@
 import { $ } from '../utils/dom.js';
 
-export class useRouter {
+class Router {
 	routes;
-	constructor(initialRoute) {
-		this.routes = { '/': initialRoute };
-		this.routes['/'].mount($('.App'));
+
+	initRouter(initialRoute) {
 		this.setEvent();
+		this.routes = {
+			'/': initialRoute,
+		};
+
+		this.routes['/'].mount($('.App'));
 	}
 
-	addRoutes(url, component) {
-		this.routes[url] = component;
+	useParams() {
+		return history.state;
 	}
 
-	handleUrlChange({ url, productId }) {
-		history.pushState(null, null, `${url}`);
+	addRoute(path, component) {
+		this.routes[path] = component;
+	}
 
-		const reg = /\/products\/[0-9]{1}/g;
-		if (url.match(reg)) {
-			this.routes['/products'].mount($('.App'), {
-				productId,
-			});
-		} else {
-			this.routes[window.location.pathname].mount($('.App'));
+	push(pathname, params) {
+		history.pushState(
+			params,
+			null,
+			params ? `${pathname}/${Object.values(params)[0]}` : pathname,
+		);
+
+		this.routes[pathname].mount($('.App'));
+	}
+
+	goBack(e) {
+		if (e.state) {
+			this.routes['/products'].mount($('.App'));
+			return;
 		}
+		this.routes[window.location.pathname].mount($('.App'));
 	}
 
 	setEvent() {
-		window.addEventListener('urlchange', (e) => this.handleUrlChange(e.detail));
-		window.addEventListener('popstate', () => {
-			const path = window.location.pathname;
-			const productId = path.split('/').slice(-1)[0];
-			this.handleUrlChange({ url: path, productId });
+		window.addEventListener('popstate', (e) => {
+			this.goBack(e);
 		});
 	}
 }
+
+const router = new Router();
+export default router;

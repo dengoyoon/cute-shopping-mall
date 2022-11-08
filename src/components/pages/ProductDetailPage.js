@@ -4,6 +4,7 @@ import ProductOrderer from '../ProductOrderer.js';
 import { $ } from '../../utils/dom.js';
 import { calculateTotalPrice } from '../../utils/index.js';
 import localStorage from '../../utils/localStorage.js';
+import router from '../../core/router.js';
 
 class ProductDetailPage extends Component {
 	LOCAL_STORAGE_KEY = 'products_cart';
@@ -16,7 +17,8 @@ class ProductDetailPage extends Component {
 	}
 
 	async mounted() {
-		const res = await CCApi.getProductDetail(this.props.productId);
+		const { productId } = router.useParams();
+		const res = await CCApi.getProductDetail(productId);
 		this.setState({ ...this.state, productData: res });
 	}
 
@@ -71,13 +73,6 @@ class ProductDetailPage extends Component {
 		);
 	}
 
-	moveToCartPage() {
-		const urlChangeEvent = new CustomEvent('urlchange', {
-			detail: { url: `/cart` },
-		});
-		window.dispatchEvent(urlChangeEvent);
-	}
-
 	orderProduct() {
 		const { productData, productCart } = this.state;
 		const formattedData = productCart.map((item) => {
@@ -86,7 +81,7 @@ class ProductDetailPage extends Component {
 			return item;
 		});
 		localStorage.setWithExistingData(this.LOCAL_STORAGE_KEY, formattedData);
-		this.moveToCartPage();
+		router.push('/cart');
 	}
 
 	handleProductQuantityUpdate(e) {

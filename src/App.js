@@ -1,14 +1,14 @@
 import ProductDetailPage from './components/pages/ProductDetailPage.js';
-import ProductListPage from './components/pages/ProductListPage.js';
 import CartPage from './components/pages/CartPage.js';
 import { Component } from './core/Component.js';
-import { useRouter } from './core/router.js';
+import router from './core/router.js';
+import ProductListPage from './components/pages/ProductListPage.js';
 
 export class App extends Component {
 	constructor() {
 		super();
-		const router = new useRouter(ProductListPage);
-		router.addRoutes('/products', ProductDetailPage);
-		router.addRoutes('/cart', CartPage);
+		router.initRouter(ProductListPage);
+		router.addRoute('/products', ProductDetailPage);
+		router.addRoute('/cart', CartPage);
 	}
 }
