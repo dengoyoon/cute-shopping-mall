@@ -1,0 +1,10 @@
+{
+	"env": {
+		"browser": true
+	},
+	"extends": ["plugin:prettier/recommended", "airbnb-base"],
+	"plugins": ["prettier"],
+	"rules": {
+		"disallowTabs": false
+	}
+}
