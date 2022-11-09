@@ -5,9 +5,9 @@ import { $ } from '../../utils/dom.js';
 import { calculateTotalPrice } from '../../utils/index.js';
 import localStorage from '../../utils/localStorage.js';
 import router from '../../core/router.js';
+import { LOCAL_STORAGE_KEY_CART } from '../../core/constants.js';
 
 class ProductDetailPage extends Component {
-	LOCAL_STORAGE_KEY = 'products_cart';
 	setup() {
 		this.state = {
 			productCart: [],
@@ -76,11 +76,10 @@ class ProductDetailPage extends Component {
 	orderProduct() {
 		const { productData, productCart } = this.state;
 		const formattedData = productCart.map((item) => {
-			delete item.optionData;
 			item.productId = productData.id;
 			return item;
 		});
-		localStorage.setWithExistingData(this.LOCAL_STORAGE_KEY, formattedData);
+		localStorage.setWithExistingData(LOCAL_STORAGE_KEY_CART, formattedData);
 		router.push('/cart');
 	}
 
@@ -89,7 +88,7 @@ class ProductDetailPage extends Component {
 		const updatedQuantity = Number(e.target.value);
 
 		const updatedProductCart = this.state.productCart.map((item) => {
-			if (item.optionId === selectedOptionId) {
+			if (item.optionId === Number(selectedOptionId)) {
 				if (item.optionData.stock < updatedQuantity) {
 					alert('올바른 수량을 입력하세요.');
 					return {
@@ -121,7 +120,7 @@ class ProductDetailPage extends Component {
 		}
 
 		const isAlreadyExist = this.state.productCart.find(
-			(item) => item.optionId === selectedOptionId,
+			(item) => item.optionId === Number(selectedOptionId),
 		);
 		if (isAlreadyExist) {
 			return;
@@ -131,7 +130,7 @@ class ProductDetailPage extends Component {
 		const updatedProductCart = [
 			...this.state.productCart,
 			{
-				optionId: selectedOptionId,
+				optionId: Number(selectedOptionId),
 				optionData: {
 					...clickedOptionData,
 					price: this.state.productData.price + clickedOptionData.price,
