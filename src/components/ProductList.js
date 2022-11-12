@@ -18,11 +18,7 @@ class ProductList extends Component {
 	}
 	setEvent() {
 		const { moveToDetailPage } = this.props;
-		this.$target.addEventListener('click', ({ target }) => {
-			if (target.classList.contains('Product')) {
-				moveToDetailPage(target.dataset.productId);
-			}
-		});
+		this.addEvent('click', '.Product', moveToDetailPage);
 	}
 }
 

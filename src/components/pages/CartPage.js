@@ -1,4 +1,5 @@
 import { Component } from '../../core/Component.js';
+import router from '../../core/router.js';
 import localStorage from '../../utils/localStorage.js';
 import {
 	LOCAL_STORAGE_KEY_CART,
@@ -62,6 +63,16 @@ class CartPage extends Component {
         </div>
       </div>
 			`;
+	}
+
+	setEvent() {
+		this.addEvent('click', '.OrderButton', this.order.bind(this));
+	}
+
+	order() {
+		alert('주문되었습니다');
+		router.push('/');
+		localStorage.clear();
 	}
 }
 

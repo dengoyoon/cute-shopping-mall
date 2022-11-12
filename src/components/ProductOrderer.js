@@ -25,16 +25,12 @@ class ProductOrderer extends Component {
 
 	setEvent() {
 		const { orderProduct, handleProductQuantityUpdate } = this.props;
-
-		this.$target.addEventListener('click', ({ target }) => {
-			if (target.classList.contains('OrderButton')) {
-				orderProduct();
-			}
-		});
-		this.$target.addEventListener('change', (e) => {
-			e.stopPropagation();
-			handleProductQuantityUpdate(e);
-		});
+		this.addEvent('click', '.OrderButton', orderProduct);
+		this.addEvent(
+			'change',
+			'.ProductDetail__selectedOptions',
+			handleProductQuantityUpdate,
+		);
 	}
 }
 

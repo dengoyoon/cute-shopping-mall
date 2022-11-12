@@ -2,18 +2,27 @@ import { $ } from '../utils/dom.js';
 
 class Router {
 	routes;
+	currentPath;
 
 	initRouter(initialRoute) {
 		this.setEvent();
 		this.routes = {
 			'/': initialRoute,
 		};
-
-		this.routes['/'].mount($('.App'));
+		this.mountRequestedPath('/');
 	}
 
 	useParams() {
 		return history.state;
+	}
+
+	mountRequestedPath(path) {
+		this.currentPath = path;
+		this.routes[this.currentPath].mount($('.App'));
+	}
+
+	unmountCurrentPath() {
+		this.routes[this.currentPath].willUnmount();
 	}
 
 	addRoute(path, component) {
@@ -26,8 +35,8 @@ class Router {
 			null,
 			params ? `${pathname}/${Object.values(params)[0]}` : pathname,
 		);
-
-		this.routes[pathname].mount($('.App'));
+		this.unmountCurrentPath();
+		this.mountRequestedPath(pathname);
 	}
 
 	goBack(e) {
@@ -35,7 +44,8 @@ class Router {
 			this.routes['/products'].mount($('.App'));
 			return;
 		}
-		this.routes[window.location.pathname].mount($('.App'));
+		this.unmountCurrentPath();
+		this.mountRequestedPath(window.location.pathname);
 	}
 
 	setEvent() {

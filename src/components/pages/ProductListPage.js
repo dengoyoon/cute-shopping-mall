@@ -29,7 +29,8 @@ class ProductListPage extends Component {
 		</div>
     `;
 	}
-	moveToDetailPage(productId) {
+	moveToDetailPage(e) {
+		const productId = e.target.dataset.productId;
 		router.push('/products', { productId });
 	}
 }

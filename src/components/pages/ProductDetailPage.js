@@ -73,7 +73,8 @@ class ProductDetailPage extends Component {
 		);
 	}
 
-	orderProduct() {
+	orderProduct(e) {
+		e.stopPropagation();
 		const { productData, productCart } = this.state;
 		const formattedData = productCart.map((item) => {
 			item.productId = productData.id;
@@ -84,6 +85,7 @@ class ProductDetailPage extends Component {
 	}
 
 	handleProductQuantityUpdate(e) {
+		e.stopPropagation();
 		const selectedOptionId = e.target.id;
 		const updatedQuantity = Number(e.target.value);
 
@@ -149,9 +151,11 @@ class ProductDetailPage extends Component {
 	}
 
 	setEvent() {
-		this.$target.addEventListener('change', (e) => {
-			this.handleProductClick(e);
-		});
+		this.addEvent(
+			'change',
+			'.ProductDetailPage',
+			this.handleProductClick.bind(this),
+		);
 	}
 }
 
