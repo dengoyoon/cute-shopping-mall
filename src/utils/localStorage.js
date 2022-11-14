@@ -13,6 +13,9 @@ const localStorage = {
 		}
 		this.set(key, [...existingData, ...value]);
 	},
+	clear() {
+		window.localStorage.clear();
+	},
 };
 
 export default localStorage;
